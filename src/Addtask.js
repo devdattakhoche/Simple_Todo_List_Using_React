@@ -34,7 +34,7 @@ class Addtask extends React.Component {
         <br />
         <button
           type="submit"
-          className="btn btn-primary my-4 shadow text-lowercase"
+          className="btn btn-primary my-4 shadow text-Capitalize"
           placeholder="Add"
         >
           Create Todo
