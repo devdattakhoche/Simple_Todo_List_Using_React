@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import Addtask from "./Addtask";
 import Tasks from "./Display";
 import "./display.css";
@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="text-center container">
-        <h1 className="display-3 my-4">Todo List</h1>
+        <h1 className="display-3 my-4 blue-text">Todo's List</h1>
         <Tasks Tasks={this.state.Task} dante={this.taskdel} />
         <Addtask Add={this.Add} />
       </div>

@@ -18,7 +18,7 @@ const Tasks = ({ Tasks, dante }) => {
       );
     });
   } else {
-    List = <h1 className="display-4">Woohoo!!! No todos left today.</h1>;
+    List = <h1 className="display-4">Woohoo!!! No todos left today!!</h1>;
   }
   return <div>{List}</div>;
 };
