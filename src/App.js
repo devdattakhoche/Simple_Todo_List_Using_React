@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Addtask from "./Addtask";
+import Tasks from "./Display";
+import "./display.css";
+class App extends React.Component {
+  state = {
+    Task: []
+  };
+  Add = task => {
+    let mystate = [...this.state.Task, task];
+    this.setState({
+      Task: mystate
+    });
+  };
+  taskdel = id => {
+    let Tasks = this.state.Task.filter(Task => {
+      return Task.id !== id;
+    });
+    this.setState({
+      Task: Tasks
+    });
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <div className="text-center container">
+        <h1 className="display-3 my-4">Todo List</h1>
+        <Tasks Tasks={this.state.Task} dante={this.taskdel} />
+        <Addtask Add={this.Add} />
+      </div>
+    );
+  }
 }
 
 export default App;
