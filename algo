@@ -344,3 +344,13 @@ something's broken.
    hostname-exact criteria, both decidable. Regex or negated criteria will
    push real rules into `OVERLAP_UNKNOWN` — expect that bucket to be
    nonempty on a real run.
+
+
+
+Answer: Akamai walks the full tree regardless — evaluation does not stop under a matched deny/redirect.
+
+Per Akamai's own docs: a rule executes its behaviors and nested children whenever its criteria match, evaluated top to bottom, and if a behavior is specified more than once, the last one declared overrides the earlier ones. There's no branch that skips children under a terminator.
+
+Confirmed further by denyAccess itself: a nested child can override a parent's deny (by matching the same reason key with enabled: false), which is only possible if the child always executes regardless of the parent's deny.
+
+So: no pruning needed. deny/redirect are just ordinary last-wins mergeable state on the Akamai side, same as origin or caching — not control-flow terminators. Terminating semantics only apply downstream, on the Cloudflare side.
